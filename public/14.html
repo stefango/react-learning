@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>14 事件与 this</title>
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor(props) {
+        super(props);
+        console.log('this', this);
+        this.funC = this.funC.bind(this);
+      }
+
+      funWithBrackets(){
+        console.log('我会立刻执行');
+      }
+
+      funA(){
+        console.log(this);
+      }
+      
+      funB = () => {
+        console.log(this);
+      }
+
+      funC(){
+        console.log(this);
+      }
+
+      funD(){
+        console.log(this);
+      }
+
+      do(params) {
+        console.log(params);
+      }
+
+      printEvent(param, event) {
+        console.log(param, event);
+      }
+
+      render() {
+        return (
+          <div>
+            <h1>组件 this</h1>
+            <button onClick={this.funA.bind(this)}>组件上 bind 方式绑定</button><br/>
+            <button onClick={this.funB}>定义为箭头函数方式绑定</button><br/>
+            <button onClick={this.funC}>构造器里提前绑定</button><br/>
+            <button onClick={()=>{this.funD();/*此处需要加括号*/}}>事件调用时使用箭头函数</button>
+            
+            <h2>测试</h2>
+            <button onClick={this.funWithBrackets()}>函数加括号时会自动执行，点击时无法使用</button>
+            
+            <h1>函数实参传递</h1>
+            <button onClick={this.do.bind(this, 'xzl')}>函数实参传递1</button><br/>
+            <button onClick={() => {this.do('xzl')}}>函数实参传递2</button><br/>
+            <button onClick={(e) => {this.printEvent('xzl', e)}}>事件</button>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 渲染外部数据与联系</title>
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="text/babel">
+    let arr = ['寒冰', '猴子']
+    let isShow = true
+
+    let ChildCom = (props) => {
+      return (
+        <div>{
+          props.arr.map((v, i) => {
+            return (<p style={{ display: isShow ? 'block' : 'none' }} key={i}>第{i}个英雄是：{v}</p>)
+          })
+        }</div>
+      )
+    }
+
+    let Com = () => {
+      return (
+        <div>
+          <p onClick={() => {
+            isShow = !isShow;
+            console.log(isShow);
+            refresh();
+          }}>LOL英雄展示</p>
+          <ChildCom arr={arr} />
+        </div>
+      )
+    }
+
+    let refresh = () => {
+      ReactDOM.render(<Com />, document.getElementById('app'))
+    }
+
+    refresh();
+  </script>
+</body>
+
+</html>

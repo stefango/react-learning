@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>react-house-with-cat</title>
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+    const IMAGES = {
+      roof: 'https://cdn.glitch.com/1fb3273a-81cb-45bc-acbd-555546cb098f%2Froof.png?1515785259159',
+      wall: 'https://cdn.glitch.com/1fb3273a-81cb-45bc-acbd-555546cb098f%2Fwall.png?1501113882297',
+      window: 'https://cdn.glitch.com/1fb3273a-81cb-45bc-acbd-555546cb098f%2Fwindow.png?1501113882112',
+      door_open: 'https://cdn.glitch.com/1fb3273a-81cb-45bc-acbd-555546cb098f%2Fdoor_open.png?1501113882121',
+      door_closed: 'https://cdn.glitch.com/1fb3273a-81cb-45bc-acbd-555546cb098f%2Fdoor_close.png?1501113881433',
+      cat_sleeping: 'https://cdn.glitch.com/1fb3273a-81cb-45bc-acbd-555546cb098f%2Fcat_sleeping.png?1515785234959',
+      cat_awake: 'https://cdn.glitch.com/1fb3273a-81cb-45bc-acbd-555546cb098f%2Fcat_standing.png?1515785235095',
+    }
+
+    //无状态组件：解构，不需要写props
+    let Door = ({ isOpen, onClick }) => (
+      <img src={isOpen ? IMAGES.door_open : IMAGES.door_closed} className='door' onClick={onClick} />
+    )
+
+    //类组件：this.props.xxx
+    //class Door extends React.Component {
+    //  render() {
+    //    return <img src={this.props.isOpen ? IMAGES.door_open : IMAGES.door_closed} className='door' onClick={this.props.onClick} />;
+    //  }
+    //}
+
+    let Cat = ({ status }) => (
+      <img src={status === 'sleeping' ? IMAGES.cat_sleeping : IMAGES.cat_awake}
+        className='cat' />
+    )
+
+    class House extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = { doorOpen: false };
+      }
+      handleClick = () => {
+        if (this.state.doorOpen)
+          this.setState({ doorOpen: false });
+        else
+          this.setState({ doorOpen: true });
+      }
+      render() {
+        return (
+          <div className='house'>
+            <Door isOpen={this.state.doorOpen} onClick={this.handleClick} />
+            <Cat status={this.state.doorOpen ? 'awake' : 'sleeping'} />
+          </div>
+        );
+      }
+    }
+    
+    ReactDOM.render(<House />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

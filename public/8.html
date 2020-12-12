@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8面向组件编程props基础</title>
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+
+  <div id="funApp"></div>
+  <hr />
+  <div id="clazzApp"></div>
+
+  <script type="text/babel">
+    let text = '外传内'
+    let num = 18
+
+    let obj = {
+      name: 'xzl',
+      age: 99
+    }
+
+    function FunCom(props) {
+      return (
+        <div>
+          <p>props接收的值---text：{props.text}---num：{props.num}---默认值为：{props.id}</p>
+          <p>[ES6解构]props接收的值---name：{props.name}---age：{props.age}</p>
+        </div>
+      )
+    }
+
+    //props默认值
+    FunCom.defaultProps = {
+      id: "default"
+    }
+
+    ReactDOM.render(<FunCom text={text} num={num} {...obj} />, document.getElementById('funApp'))
+
+  </script>
+
+  <script type="text/babel">
+
+    let obj = {
+      name: 'Obama',
+      age: 99
+    }
+
+    class ClazzCom extends React.Component {
+      render() {
+        return (
+          <div>类组件--name：{this.props.name}---age：{this.props.age}</div>
+        )
+      }
+    }
+
+
+    ReactDOM.render(<ClazzCom {...obj} />, document.getElementById('clazzApp'))
+  </script>
+</body>
+
+</html>

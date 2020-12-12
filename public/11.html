@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11 state基础</title>
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="text/babel">
+    class Com extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          name: '呱呱呱'
+        }
+      }
+      render() {
+        return (
+          <div>
+            <button onClick={() => { this.setState({ name: '哈哈哈' }) }}>修改</button>
+            <h1>{this.state.name}</h1>
+          </div>
+        );
+      }
+    }
+
+    let refresh = () => {
+      ReactDOM.render(<Com />, document.getElementById('app'))
+    }
+
+    refresh();
+  </script>
+</body>
+
+</html>

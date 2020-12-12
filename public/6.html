@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6对象取值</title>
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+
+  <div id="app"></div>
+
+  <script type="text/babel">
+    let myKey = "age"
+    let obj = {
+      myKey: 666,
+      [myKey]: 21, //对象obj的key为变量时，不能通过`obj.key`来访问
+      name: "xzl",
+    };
+    console.log(obj); //{myKey: 666, age: 21, name: "xzl"}
+    console.log(obj.myKey); //666
+    console.log(obj.name); //xzl
+    console.log(obj.age); //21
+    console.log(obj[myKey]); //21
+    console.log(Object.keys(obj));
+
+    /**let arr = [
+      { name: 'xzl', age: 18 },
+      { name: "tom", age: 20 },]**/
+
+    let dom = <div>
+      {
+        Object.keys(obj).map((v, i) => {
+          return <p key={i}>属性{v}的值是{obj[v]}</p>
+        })
+      }
+    </div>
+    
+    ReactDOM.render(dom, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

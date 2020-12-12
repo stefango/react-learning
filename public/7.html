@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7面向组件编程基础</title>
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+
+  <div id="app"></div>
+  <hr />
+  <div id="app2"></div>
+
+  <script type="text/babel">
+
+    //1.函数式组件
+    //父子组件
+    function MyDomA() {
+      return (
+        <div>
+          <h1>子组件A：无状态组件、自定义标签</h1>
+        </div>
+      )
+    }
+
+    function MyDomB() {
+      return (
+        <div>
+          <h1>子组件B：无状态组件、自定义标签</h1>
+        </div>
+      )
+    }
+
+    function ParentDom() {
+      return (
+        <div>
+          父组件开始
+          <MyDomA />
+          <MyDomB />
+          父组件结束
+        </div>
+      )
+    }
+
+    let funDom = <ParentDom />
+
+    ReactDOM.render(funDom, document.getElementById('app'))
+
+    //2.类组件
+    class MyDomC extends React.Component {
+      render() {
+        return (
+          <div>
+            类组件
+          </div>
+        )
+      }
+    }
+
+    let classDom = <MyDomC />
+
+    ReactDOM.render(classDom, document.getElementById('app2'))
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <!-- <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/babel-standalone/babel.min.js"></script> -->
+
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <h1>hhh</h1>
+    <div id="demoReact"></div>
+    <div id="dateDemo"></div>
+    <div id="listDemo"></div>
+
+
+
+    <script type="text/babel">
+        let myDom = <h1>泛微</h1>;
+        ReactDOM.render(myDom, document.getElementById('demoReact'));
+    </script>
+
+    <script type="text/babel">
+        function tick() {
+            const element = (
+                <div>
+                    <h2>现在是 {new Date().toLocaleTimeString()}.</h2>
+                </div>
+            );
+            ReactDOM.render(
+                element,
+                document.getElementById('dateDemo')
+            );
+        }
+
+        setInterval(tick, 1000);
+    </script>
+    <script type="text/babel">
+        var objects = [{ 'n': 1 }, { 'n': 2 }];
+        _.maxBy(objects, function (o) { return o.n; });
+    </script>
+
+    <script type="text/babel">
+        const arr = ['china', 'us', 'japan']
+        let flag = -1
+        let times = 0
+        function genList() {
+            return arr.map((v, i) => {
+                return <p key={i} onClick={() => { flag = i; render(); }} style={{ color: i == flag ? 'red' : '' }}>{v}</p>
+            })
+        }
+
+        function render() {
+            console.log(times++)
+            ReactDOM.render(genList(), document.getElementById('listDemo'))
+        }
+
+        render();
+
+    </script>
+</body>
+
+</html>
