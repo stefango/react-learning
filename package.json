@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -9,6 +10,7 @@
     "babel-standalone": "^6.26.0",
     "lodash": "^4.17.20",
     "prop-types": "^15.7.2",
+    "pubsub-js": "^1.9.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3"

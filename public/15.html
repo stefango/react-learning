@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15 条件渲染 & 16 状态提升</title>
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="text/babel">
+    class ChildA extends React.Component {
+      constructor(props) {
+        super(props)
+      }
+
+      render() {
+        return <div>A组件-{this.props.aBool}</div>
+      }
+    }
+
+    class ChildB extends React.Component {
+      constructor(props) {
+        super(props)
+      }
+
+      render() {
+        return <div>B组件-{this.props.bBool}</div>
+      }
+    }
+
+    class App extends React.Component {
+      constructor(props) {
+        super(props);
+        this.do = this.do.bind(this);
+        this.state = {
+          bool: true
+        }
+      }
+
+      do() {
+        this.setState({
+          bool: !this.state.bool
+        })
+        console.log('do', this.state.bool);
+      }
+
+      render() {
+        let title = document.title;
+        return (
+          <div>
+            <h1>{title.split('&')[0]}</h1>
+            <button onClick={this.do}>切换</button>
+            <p>{this.state.bool + ''}</p>
+
+            <h1>{title.split('&')[1]}</h1>
+            <ChildA aBool={this.state.bool+""}/>
+            <ChildB bBool={this.state.bool+""}/>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>
