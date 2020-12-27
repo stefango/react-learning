@@ -1,0 +1,8 @@
+{
+  "arr": [
+    {"name": "Tom", "age": 18},
+    {"name": "Jane", "age": 20},
+    {"name": "Jack", "age": 56}
+  ],
+  "_comment": "json-server mock/data.json -p 4000"
+}
