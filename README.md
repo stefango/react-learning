@@ -252,4 +252,17 @@ REF：
 - [无需清除的 effect](https://react.docschina.org/docs/hooks-effect.html#effects-without-cleanup)
 - [需要清除的 effect](https://react.docschina.org/docs/hooks-effect.html#%E9%9C%80%E8%A6%81%E6%B8%85%E9%99%A4%E7%9A%84-effect)
 
+**（20201227 TODO）**https://react.docschina.org/docs/hooks-effect.html#%E9%9C%80%E8%A6%81%E6%B8%85%E9%99%A4%E7%9A%84-effect
+
 # 26 redux
+
+redux 下新建 reducer.js、store.js、action.js
+
+demo: ReduxDemo.js
+
+# 27 基本环境搭建
+
+demo: ../mall-demo
+
+
+

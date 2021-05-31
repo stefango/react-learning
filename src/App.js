@@ -13,6 +13,7 @@ import Parent from './components/Parent';
 import Home from './components/Home';
 import User from './components/User';
 import HookDemo from './components/HookDemo';
+import ReduxDemo from './components/ReduxDemo';
 //媒体资源
 import MyLogo from './assets/ZX.png'
 
@@ -27,6 +28,7 @@ function App(props) {
 
   return (
     <div className="App">
+      <ReduxDemo />
       <HookDemo />
       <hr />
       <h2>路由</h2>
